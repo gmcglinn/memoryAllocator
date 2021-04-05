@@ -1,32 +1,46 @@
 package memory;
 
+
 public class memory {
-    private memSlot[] slots;
+    private int startAdd;
+    private int endAdd;
+    private int size;
+    private boolean state;
+    private int slotID;
 
     /**
-    * Memory instance (slots)
+    * Memory slots to insert into memory (start address, end address)
     */
-    public memory(int totalSlots){ 
-        this.slots = new memSlot[totalSlots];
+    public memory(int start, int end, int slotID){
+        this.startAdd = start;
+        this.endAdd = end;
+        this.size = end - start;
+        this.state = false;
+        this.slotID = slotID;
     }
-    
-    /**
-    * Define characteristics of memory slot.
-    * SlotNum is index
-    */
-    public void createSlot(int slotNum, int start, int stop){
-        this.slots[slotNum] = new memSlot(start, stop);
+
+    public int getStart(){
+        return this.startAdd;
+    }
+    public int getEnd(){
+        return this.endAdd;
+    }
+    public void setEnd(int i){
+        this.endAdd = i;
     }
     public int getSize(){
-        return this.slots.length;
+        return this.size;
     }
-
-
-    public void checkSum(){
-
-        for(memSlot a : this.slots){
-            System.out.println("Memory Start: "+a.getStart()+" Memory End:"+a.getEnd()+" Size: "+a.getSize()+" Full?: "+a.isFull());
-        }
-
+    public boolean isFull(){
+        return this.state;
+    }
+    public int ID(){
+        return this.slotID;
+    }
+    /**
+    * Fill or empty the memory slot state
+    */
+    public void toggleState(){
+        this.state = !this.state;
     }
 }

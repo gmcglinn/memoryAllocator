@@ -12,10 +12,10 @@ public class process {
     public int getSize(){
         return this.size;
     }
+
     public int getID(){
         return this.ID;
     }
-
 
 
 }

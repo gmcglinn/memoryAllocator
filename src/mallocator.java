@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import memory.memory;
+import processes.process;
+import algorithms.*;
 
 
 public class mallocator {
@@ -10,20 +12,23 @@ public class mallocator {
 
     public static void main(String[] args){
         
-        memory memSet = null;
-        int processes[] = null;
+        memory memSet[] = null;
+        process processes[] = null;
 
+
+        //Scrape input files for values and assign to arrays
+        //Memory Input
         try {
             Scanner fileReader = new Scanner(new File("src/inputs/Minput.data"));
             while (fileReader.hasNextLine()) {
-                memSet = new memory(Integer.parseInt(fileReader.nextLine()));
-                for(int j = 0; j < memSet.getSize();j++){
+                memSet = new memory[Integer.parseInt(fileReader.nextLine())];
+                for(int j = 0; j < memSet.length;j++){
                     String tempLine[] = fileReader.nextLine().split(" ");
                     int[] temp2 = new int[2];
                     for(int i =0 ;i < 2;i++){
                         temp2[i]= Integer.parseInt(tempLine[i]);
                     }
-                    memSet.createSlot(j, temp2[0], temp2[1]);
+                    memSet[j] = new memory(temp2[0], temp2[1],j+1);
                 }
             }
             fileReader.close();
@@ -31,17 +36,19 @@ public class mallocator {
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+
+          //Same as above but for processes
           try {
             Scanner fileReader = new Scanner(new File("src/inputs/Pinput.data"));
             while (fileReader.hasNextLine()) {
-                processes = new int[Integer.parseInt(fileReader.nextLine())];
+                processes = new process[Integer.parseInt(fileReader.nextLine())];
                 for(int j = 0; j < processes.length;j++){
                     String tempLine[] = fileReader.nextLine().split(" ");
                     int[] temp2 = new int[2];
                     for(int i =0 ;i < 2;i++){
                         temp2[i]= Integer.parseInt(tempLine[i]);
                     }
-                    processes[j] = temp2[1];
+                    processes[j] = new process(temp2[0], temp2[1]);
                 }
             }
             fileReader.close();
@@ -51,9 +58,20 @@ public class mallocator {
           }
 
 
-          memSet.checkSum();
+          new firstFit(memSet, processes);
 
 
+
+/*
+          //value checks, comment out when done
+          for(process a : processes){
+            System.out.println("Process ID: " + a.getID() + " Size: " + a.getSize());
+          }
+          for(memory a : memSet){
+            System.out.println("Memory Slot #"+ a.ID() + " Size: " + a.getSize() + " Begins: " + a.getStart() + " End: "+ a.getEnd() + " Is Full? " + a.isFull());
+          }
+
+*/
         
     }
 }
