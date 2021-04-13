@@ -58,7 +58,7 @@ public class mallocator {
           }
 
 
-          new firstFit(memSet, processes);
+          new worstFit(memSet, processes);
 
 
 
