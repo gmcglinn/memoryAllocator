@@ -61,17 +61,6 @@ public class mallocator {
           new worstFit(memSet, processes);
 
 
-
-/*
-          //value checks, comment out when done
-          for(process a : processes){
-            System.out.println("Process ID: " + a.getID() + " Size: " + a.getSize());
-          }
-          for(memory a : memSet){
-            System.out.println("Memory Slot #"+ a.ID() + " Size: " + a.getSize() + " Begins: " + a.getStart() + " End: "+ a.getEnd() + " Is Full? " + a.isFull());
-          }
-
-*/
         
     }
 }

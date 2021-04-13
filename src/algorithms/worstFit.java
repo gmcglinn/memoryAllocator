@@ -38,6 +38,7 @@ public class worstFit {
                         i = tempMem.length+1;
                         miss = false;
                     }
+                    //re-sort available memory with another bubble sort
                     for(int x = 0;x < tempMem.length;x++){
                         for(int j = 1; j < tempMem.length;j++){
                             if(tempMem[j-1].getSize() < tempMem[j].getSize()){

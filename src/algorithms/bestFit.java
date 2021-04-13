@@ -39,6 +39,7 @@ public class bestFit {
                         i = tempMem.length+1;
                         miss = false;
                     }
+                    //re-sort available memory with another bubble sort
                     for(int x = 0;x < tempMem.length-2;x++){
                         for(int j = 0; j < tempMem.length-2;j++){
                             if(tempMem[j].getSize() > tempMem[j+1].getSize()){
